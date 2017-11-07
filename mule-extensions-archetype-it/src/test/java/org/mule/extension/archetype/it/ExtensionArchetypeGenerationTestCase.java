@@ -8,18 +8,17 @@
 package org.mule.extension.archetype.it;
 
 import static java.lang.Boolean.FALSE;
-import static java.util.Arrays.asList;
-import static org.mule.extensions.archetype.ArchetypeConstants.ARCHETYPE_INTERACTIVE_MODE_PROP;
-import static org.mule.extensions.archetype.ArchetypeConstants.EXTENSIONS_ARCHETYPE_AID;
 import static org.mule.extensions.archetype.ArchetypeConstants.ARCHETYPE_AID_PROP;
-import static org.mule.extensions.archetype.ArchetypeConstants.EXTENSIONS_ARCHETYPE_GID;
 import static org.mule.extensions.archetype.ArchetypeConstants.ARCHETYPE_GID_PROP;
-import static org.mule.extensions.archetype.ArchetypeConstants.EXTENSIONS_ARCHETYPE_VERSION;
+import static org.mule.extensions.archetype.ArchetypeConstants.ARCHETYPE_INTERACTIVE_MODE_PROP;
 import static org.mule.extensions.archetype.ArchetypeConstants.ARCHETYPE_VERSION_PROP;
 import static org.mule.extensions.archetype.ArchetypeConstants.ARTIFACT_ID;
+import static org.mule.extensions.archetype.ArchetypeConstants.EXTENSIONS_ARCHETYPE_AID;
+import static org.mule.extensions.archetype.ArchetypeConstants.EXTENSIONS_ARCHETYPE_GID;
+import static org.mule.extensions.archetype.ArchetypeConstants.EXTENSIONS_ARCHETYPE_VERSION;
 import static org.mule.extensions.archetype.ArchetypeConstants.EXTENSION_NAME;
-import static org.mule.extensions.archetype.ArchetypeConstants.GROUP_ID;
 import static org.mule.extensions.archetype.ArchetypeConstants.EXTENSION_VERSION;
+import static org.mule.extensions.archetype.ArchetypeConstants.GROUP_ID;
 import static org.mule.extensions.archetype.ArchetypeConstants.PACKAGE;
 
 import java.io.File;
@@ -53,7 +52,7 @@ public class ExtensionArchetypeGenerationTestCase {
      * unstable test results. Fortunately, the verifier
      * makes it easy to do this.
      */
-    verifier = new Verifier(ROOT.getAbsolutePath());
+    verifier = new Verifier(ROOT.getAbsolutePath(), System.getProperty("mule.extension.archetype.testSettings", (String) null));
 
     // Deleting a former created artifact from the archetype to be tested
     verifier.deleteArtifact(TEST_EXTENSION_GID, TEST_EXTENSION_AID, TEST_EXTENSION_VERSION, null);
