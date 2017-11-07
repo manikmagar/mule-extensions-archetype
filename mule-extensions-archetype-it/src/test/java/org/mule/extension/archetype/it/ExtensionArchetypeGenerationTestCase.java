@@ -23,7 +23,9 @@ import static org.mule.extensions.archetype.ArchetypeConstants.PACKAGE;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.maven.it.VerificationException;
@@ -52,7 +54,7 @@ public class ExtensionArchetypeGenerationTestCase {
      * unstable test results. Fortunately, the verifier
      * makes it easy to do this.
      */
-    verifier = new Verifier(ROOT.getAbsolutePath(), System.getProperty("mule.extension.archetype.testSettings", (String) null), true);
+    verifier = new Verifier(ROOT.getAbsolutePath(), System.getProperty("mule.extension.archetype.testSettings", (String) null));
 
     // Deleting a former created artifact from the archetype to be tested
     verifier.deleteArtifact(TEST_EXTENSION_GID, TEST_EXTENSION_AID, TEST_EXTENSION_VERSION, null);
@@ -74,6 +76,9 @@ public class ExtensionArchetypeGenerationTestCase {
     // Since creating the archetype was successful, we now want to actually build the generated project
     verifier = new Verifier(ROOT.getAbsolutePath() + "/" + TEST_EXTENSION_AID, System.getProperty("mule.extension.archetype.testSettings", (String) null));
     verifier.setMavenDebug(true);
+    List cliProps = new ArrayList<String>();
+    cliProps.add("-s " + System.getProperty("mule.extension.archetype.testSettings", (String) null));
+    verifier.setCliOptions(cliProps);
     verifier.executeGoals(Arrays.asList("compile", "test"), System.getenv());
 
     verifier.verifyErrorFreeLog();
