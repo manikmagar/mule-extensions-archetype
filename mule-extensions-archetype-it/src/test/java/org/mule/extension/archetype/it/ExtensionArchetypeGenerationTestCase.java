@@ -72,7 +72,7 @@ public class ExtensionArchetypeGenerationTestCase {
     verifier.verifyErrorFreeLog();
 
     // Since creating the archetype was successful, we now want to actually build the generated project
-    verifier = new Verifier(ROOT.getAbsolutePath() + "/" + TEST_EXTENSION_AID);
+    verifier = new Verifier(ROOT.getAbsolutePath() + "/" + TEST_EXTENSION_AID, System.getProperty("mule.extension.archetype.testSettings", (String) null));
     verifier.setMavenDebug(true);
     verifier.executeGoals(Arrays.asList("compile", "test"), System.getenv());
 
