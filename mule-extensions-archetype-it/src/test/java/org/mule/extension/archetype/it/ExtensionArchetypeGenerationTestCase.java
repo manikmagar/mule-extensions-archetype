@@ -52,7 +52,7 @@ public class ExtensionArchetypeGenerationTestCase {
      * unstable test results. Fortunately, the verifier
      * makes it easy to do this.
      */
-    verifier = new Verifier(ROOT.getAbsolutePath(), System.getProperty("mule.extension.archetype.testSettings", (String) null));
+    verifier = new Verifier(ROOT.getAbsolutePath(), System.getProperty("mule.extension.archetype.testSettings", (String) null), true);
 
     // Deleting a former created artifact from the archetype to be tested
     verifier.deleteArtifact(TEST_EXTENSION_GID, TEST_EXTENSION_AID, TEST_EXTENSION_VERSION, null);
